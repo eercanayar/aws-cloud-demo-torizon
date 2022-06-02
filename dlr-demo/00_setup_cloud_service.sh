@@ -1,6 +1,6 @@
 aws configure set region ${AWS_REGION}
 MODEL_NAME=mobilenet-ssd-v2-coco-quant  #^[a-zA-Z0-9](-*[a-zA-Z0-9])
-VIDEO_SOURCE="/video_source.mkv"
+VIDEO_SOURCE="/dev/video0"
 
 
 if [ ! ${PROJECT_NAME} ]; then
