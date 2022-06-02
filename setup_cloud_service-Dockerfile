@@ -1,5 +1,7 @@
 FROM debian:bullseye-slim
 
+ENV AWS_PAGER=""
+
 ## Install demo dependencies
 RUN apt-get -y update && apt-get install -y \
   curl unzip wget jq less uuid-runtime
