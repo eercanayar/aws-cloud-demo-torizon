@@ -51,7 +51,7 @@ GG_COMPONENTS="{
          \"aws.greengrass.SageMakerEdgeManager\": {
              \"componentVersion\": \"1.1.0\",
              \"configurationUpdate\": {
-                 \"merge\": \"{\\\"CaptureDataPeriodicUpload\\\":\\\"false\\\",\\\"CaptureDataPeriodicUploadPeriodSeconds\\\":\\\"8\\\",\\\"DeviceFleetName\\\":\\\"${DEVICE_FLEET_NAME}\\\",\\\"BucketName\\\":\\\"${RESULTS_BUCKET_NAME}\\\",\\\"CaptureDataBase64EmbedLimit\\\":\\\"3072\\\",\\\"CaptureDataPushPeriodSeconds\\\":\\\"4\\\",\\\"SagemakerEdgeLogVerbose\\\":\\\"false\\\",\\\"CaptureDataBatchSize\\\":\\\"10\\\",\\\"CaptureDataDestination\\\":\\\"Cloud\\\",\\\"FolderPrefix\\\":\\\"sme-capture\\\",\\\"UnixSocketName\\\":\\\"/tmp/sagemaker_edge_agent_example.sock\\\",\\\"CaptureDataBufferSize\\\":\\\"30\\\"}\"
+                 \"merge\": \"{\\\"runWithDefault\\\":{\\\"posixUser\\\":\\\"root:root\\\"},\\\"CaptureDataPeriodicUpload\\\":\\\"false\\\",\\\"CaptureDataPeriodicUploadPeriodSeconds\\\":\\\"8\\\",\\\"DeviceFleetName\\\":\\\"${DEVICE_FLEET_NAME}\\\",\\\"BucketName\\\":\\\"${RESULTS_BUCKET_NAME}\\\",\\\"CaptureDataBase64EmbedLimit\\\":\\\"3072\\\",\\\"CaptureDataPushPeriodSeconds\\\":\\\"4\\\",\\\"SagemakerEdgeLogVerbose\\\":\\\"false\\\",\\\"CaptureDataBatchSize\\\":\\\"10\\\",\\\"CaptureDataDestination\\\":\\\"Cloud\\\",\\\"FolderPrefix\\\":\\\"sme-capture\\\",\\\"UnixSocketName\\\":\\\"/tmp/sagemaker_edge_agent_example.sock\\\",\\\"CaptureDataBufferSize\\\":\\\"30\\\"}\"
              },
              \"runWith\": {}
          },
