@@ -69,7 +69,9 @@ RUN pip3 install awsiotsdk
 
 RUN apt-get -y update && apt-get install -y \
   python3-numpy python3-gi-cairo python3-grpcio\
-  python3-opencv python3-yaml
+  python3-opencv python3-yaml gir1.2-gst-rtsp-server-1.0
+
+RUN gst-inspect-1.0
 
 ENTRYPOINT \
   /greengrass/v2/alts/current/distro/bin/loader
