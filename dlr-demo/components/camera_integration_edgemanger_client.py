@@ -59,7 +59,7 @@ SIZE = 300
 tensor_shape = [1, SIZE, SIZE, 3]
 
 inference_result_topic = "em/inference"
-# ipc_client = awsiot.greengrasscoreipc.connect()
+ipc_client = awsiot.greengrasscoreipc.connect()
 
 channel = grpc.insecure_channel('unix:///tmp/sagemaker_edge_agent_example.sock')
 edge_manager_client = agent_pb2_grpc.AgentStub(channel)
