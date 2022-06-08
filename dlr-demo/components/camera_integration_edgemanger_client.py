@@ -212,7 +212,7 @@ class ObjectDetection(GstRtspServer.RTSPMediaFactory):
             msg += label2string[labels[i]] + ","
 
         if (self.count == 30):
-            # publish_results_to_iot_core(msg)
+            publish_results_to_iot_core(msg)
             self.count = 0
         self.count += 1
 
