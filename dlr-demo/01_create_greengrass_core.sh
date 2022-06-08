@@ -26,3 +26,4 @@ echo "Iot thing group created"
 
 IOT_DATA_ENDPOINT=$(aws iot describe-endpoint --endpoint-type iot:Data-ATS | jq -r .endpointAddress)
 IOT_CRED_ENDPOINT=$(aws iot describe-endpoint --endpoint-type iot:CredentialProvider | jq -r .endpointAddress)
+

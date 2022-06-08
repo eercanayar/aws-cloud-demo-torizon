@@ -10,11 +10,7 @@
         "iot:Connect",
         "greengrass:*",
         "s3:*",
-        "sagemaker:*",
-        "kinesisvideo:DescribeStream",
-        "kinesisvideo:PutMedia",
-        "kinesisvideo:TagStream",
-        "kinesisvideo:GetDataEndpoint"
+        "sagemaker:*"
       ],
       "Resource": [
         "*"
