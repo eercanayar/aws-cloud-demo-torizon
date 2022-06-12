@@ -24,7 +24,7 @@ WORKDIR /root
 ## Obtain demo files from NXP and apply patches to run on Maivin
 
 COPY meta-aws-patches meta-aws-patches
-RUN git clone -b aws-cloud-demo https://github.com/NXPmicro/meta-aws.git && \
+RUN git clone -b aws-cloud-demo-video-kvs https://github.com/NXPmicro/meta-aws.git && \
   cd meta-aws && git am ../meta-aws-patches/*.patch && cd .. && \
   cp -r meta-aws/recipes-devtools/amazon-sagemaker-neo/dlr-demo/* . && \
   rm -rf meta-aws && rm -rf meta-aws-patches
