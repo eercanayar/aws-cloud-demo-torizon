@@ -25,13 +25,15 @@ WORKDIR /root
 
 COPY meta-aws-patches meta-aws-patches
 RUN git clone -b aws-cloud-demo-video-kvs https://github.com/NXPmicro/meta-aws.git && \
-  cd meta-aws && git am ../meta-aws-patches/*.patch && cd .. && \
+  cd meta-aws && git reset 6f0a533d2dfa9a9fc9d3bf6f9201c8b8a624f90e --hard && \
+  git am ../meta-aws-patches/*.patch && cd .. && \
   cp -r meta-aws/recipes-devtools/amazon-sagemaker-neo/dlr-demo/* . && \
   rm -rf meta-aws && rm -rf meta-aws-patches
 
 ENTRYPOINT \
   find . -type f -exec sed -i "s/us-east-2/$AWS_REGION/g" {} + && \
-    /bin/bash
   bash ./setup_cloud_service_and_device.sh && \
   tar -czvf /deploy/greengrass-$PROJECT_NAME.tar.gz /greengrass && \
-  cp project_config.sh /deploy/
+  cp project_config.sh /deploy/ && \
+  tar -czvf /deploy/kvs-$PROJECT_NAME.tar.gz /kvs && \
+  cp /etc/default/kvs /deploy/kvs-settings
