@@ -1,0 +1,24 @@
+From 5499338d4965448098f85bfcbe4eb2b59c36a494 Mon Sep 17 00:00:00 2001
+From: Denis Shimizu <denis.shimizu@toradex.com>
+Date: Wed, 8 Jun 2022 13:51:29 -0300
+Subject: [PATCH 1/6] use maivin camera as default video source
+
+---
+ .../amazon-sagemaker-neo/dlr-demo/00_setup_cloud_service.sh     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/00_setup_cloud_service.sh b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/00_setup_cloud_service.sh
+index cbc0e1d..95169fe 100755
+--- a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/00_setup_cloud_service.sh
++++ b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/00_setup_cloud_service.sh
+@@ -1,6 +1,6 @@
+ aws configure set region ${AWS_REGION}
+ MODEL_NAME=mobilenet-ssd-v2-coco-quant  #^[a-zA-Z0-9](-*[a-zA-Z0-9])
+-VIDEO_SOURCE="/video_source.mkv"
++VIDEO_SOURCE="/dev/video0"
+ 
+ 
+ if [ ! ${PROJECT_NAME} ]; then
+-- 
+2.25.1
+

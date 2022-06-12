@@ -4,7 +4,10 @@ ENV AWS_PAGER=""
 
 ## Install demo dependencies
 RUN apt-get -y update && apt-get install -y \
-  curl unzip wget jq less uuid-runtime
+  curl unzip wget jq less uuid-runtime git
+
+RUN git config --global user.email "you@example.com" && \
+  git config --global user.name "Your Name"
 
 ## Install AWS CLI
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" \
@@ -17,7 +20,14 @@ COPY Docker-base-torizon/greengrass-bin greengrass-bin
 RUN ./greengrass-bin/greengrass-bin_2.4.0.sh
 
 WORKDIR /root
-COPY dlr-demo /root
+
+## Obtain demo files from NXP and apply patches to run on Maivin
+
+COPY meta-aws-patches meta-aws-patches
+RUN git clone -b aws-cloud-demo https://github.com/NXPmicro/meta-aws.git && \
+  cd meta-aws && git am ../meta-aws-patches/*.patch && cd .. && \
+  cp -r meta-aws/recipes-devtools/amazon-sagemaker-neo/dlr-demo/* . && \
+  rm -rf meta-aws && rm -rf meta-aws-patches
 
 ENTRYPOINT \
   bash ./setup_cloud_service_and_device.sh && \

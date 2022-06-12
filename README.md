@@ -1,3 +1,7 @@
+# Amazon SageMaker Edge Manager on Torizon #
+
+This project is a porting for Torizon of the original demo [dlr-demo](https://github.com/NXPmicro/meta-aws/tree/aws-cloud-demo/recipes-devtools/amazon-sagemaker-neo/dlr-demo) from NXP that demonstrates features of [Amazon SageMaker Edge Manager](https://docs.aws.amazon.com/sagemaker/latest/dg/edge.html) and [AWS IoT Greengrass V2](https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-v2-whats-new.html).
+
 # Installing Pre-Requisites #
 
 ## On your Linux PC ##

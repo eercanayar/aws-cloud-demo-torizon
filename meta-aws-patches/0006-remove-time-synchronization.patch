@@ -1,0 +1,69 @@
+From e96feec5627f968f0ddfd8d0faf3d163eecf6c83 Mon Sep 17 00:00:00 2001
+From: Denis Shimizu <denis.shimizu@toradex.com>
+Date: Wed, 8 Jun 2022 13:58:18 -0300
+Subject: [PATCH 6/6] remove time synchronization
+
+---
+ .../setup_cloud_service_and_device.sh         | 40 ++++++++++---------
+ 1 file changed, 21 insertions(+), 19 deletions(-)
+
+diff --git a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/setup_cloud_service_and_device.sh b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/setup_cloud_service_and_device.sh
+index eca0830..538d94c 100755
+--- a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/setup_cloud_service_and_device.sh
++++ b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/setup_cloud_service_and_device.sh
+@@ -1,9 +1,11 @@
++set -e
++
+ MODULE_URL=https://storage.googleapis.com/download.tensorflow.org/models/tflite_11_05_08/mobilenet_v2_1.0_224_quant.tgz
+ 
+-echo "Syncing system time with www.baidu.com"
+-DATE_STR=$(curl -I www.baidu.com | grep Date)
+-echo ${DATE_STR:5}
+-date -s "${DATE_STR:5}"
++# echo "Syncing system time with www.baidu.com"
++# DATE_STR=$(curl -I www.baidu.com | grep Date)
++# echo ${DATE_STR:5}
++# date -s "${DATE_STR:5}"
+ 
+ 
+ aws --version
+@@ -17,21 +19,21 @@ if [ $? != 0 ]; then
+   fi
+ fi
+ 
+-if [ ! ${AWS_ACCESS_KEY_ID} ]; then
+-  echo "Please set AWS_ACCESS_KEY_ID..."
+-  exit 1
+-fi
+-
+-if [ ! ${AWS_SECRET_ACCESS_KEY} ]; then
+-  echo "Please set AWS_SECRET_ACCESS_KEY..."
+-  exit 1
+-fi
+-
+-if [ ! ${AWS_SESSION_TOKEN} ]; then
+-  echo "Please set AWS_SESSION_TOKEN..."
+-  exit 1
+-fi
+-
++# if [ ! ${AWS_ACCESS_KEY_ID} ]; then
++#   echo "Please set AWS_ACCESS_KEY_ID..."
++#   exit 1
++# fi
++#
++# if [ ! ${AWS_SECRET_ACCESS_KEY} ]; then
++#   echo "Please set AWS_SECRET_ACCESS_KEY..."
++#   exit 1
++# fi
++#
++# if [ ! ${AWS_SESSION_TOKEN} ]; then
++#   echo "Please set AWS_SESSION_TOKEN..."
++#   exit 1
++# fi
++#
+ if [ ! ${AWS_REGION} ]; then
+   echo "Please set AWS_REGION..."
+   exit 1
+-- 
+2.25.1
+

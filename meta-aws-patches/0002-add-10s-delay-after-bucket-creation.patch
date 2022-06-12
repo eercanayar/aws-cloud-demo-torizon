@@ -1,0 +1,61 @@
+From 006301f78d3fd2f85d9c07e044b14369df0d8c56 Mon Sep 17 00:00:00 2001
+From: Denis Shimizu <denis.shimizu@toradex.com>
+Date: Wed, 8 Jun 2022 13:55:54 -0300
+Subject: [PATCH 2/6] add 10s delay after bucket creation
+
+---
+ .../dlr-demo/03_create_device_fleet_register_device.sh         | 2 +-
+ .../dlr-demo/04_compile_and_package_neo_model.sh               | 3 ++-
+ .../dlr-demo/05_create_inference_component.sh                  | 3 ++-
+ 3 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/03_create_device_fleet_register_device.sh b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/03_create_device_fleet_register_device.sh
+index f17b2f7..274049c 100755
+--- a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/03_create_device_fleet_register_device.sh
++++ b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/03_create_device_fleet_register_device.sh
+@@ -13,6 +13,7 @@ DEVICE_NAME=${PROJECT_NAME}-SagemakerGreengrassDevice
+ 
+ aws s3 mb s3://${RESULTS_BUCKET_NAME} --region ${AWS_REGION}
+ echo "Inference results s3 bucket created"
++sleep 10
+ 
+ # Create device fleet
+ aws sagemaker create-device-fleet --region ${AWS_REGION} --device-fleet-name ${DEVICE_FLEET_NAME} \
+@@ -24,4 +25,3 @@ echo "Sagemaker device fleet created"
+ aws sagemaker register-devices --region $AWS_REGION --device-fleet-name ${DEVICE_FLEET_NAME} \
+   --devices "[{\"DeviceName\":\"${DEVICE_NAME}\",\"IotThingName\":\"${THING_NAME}\"}]"
+ echo "Sagemaker device registered"
+-
+diff --git a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/04_compile_and_package_neo_model.sh b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/04_compile_and_package_neo_model.sh
+index 29bdf36..122887f 100755
+--- a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/04_compile_and_package_neo_model.sh
++++ b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/04_compile_and_package_neo_model.sh
+@@ -22,8 +22,9 @@ fi
+ COMPONENTS_BUCKET_NAME=${PROJECT_NAME}-greengrass-components
+ UUID=$(uuidgen)
+ COMPILATION_JOB_NAME=${MODEL_NAME}-${UUID:0-8}
+-aws s3 mb s3://${COMPONENTS_BUCKET_NAME} --region ${AWS_REGION}
++aws s3 mb s3://${COMPONENTS_BUCKET_NAME} --region ${AWS_REGION} || true
+ echo "Components s3 bucket created"
++sleep 10
+ 
+ #Upload model to components bucket
+ #wget ${MODULE_URL} -O mobilenet_v2_1.0_224_quanta.tgz
+diff --git a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/05_create_inference_component.sh b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/05_create_inference_component.sh
+index 8cc6017..ebc2e0c 100755
+--- a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/05_create_inference_component.sh
++++ b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/05_create_inference_component.sh
+@@ -9,8 +9,9 @@ if [ ! ${MODEL_COMPONENT_NAME} ]; then
+ fi
+ COMPONENTS_BUCKET_NAME=${PROJECT_NAME}-greengrass-components
+ CAMERA_COMPONENT_NAME=${PROJECT_NAME}_edgeManagerClientCameraIntegration
+-aws s3 mb s3://${COMPONENTS_BUCKET_NAME} --region ${AWS_REGION}
++aws s3 mb s3://${COMPONENTS_BUCKET_NAME} --region ${AWS_REGION}  || true
+ echo "Components s3 bucket created"
++sleep 10
+ 
+ aws s3api put-object --bucket ${COMPONENTS_BUCKET_NAME} \
+   --key artifacts/aws.sagemaker.edgeManagerClientCameraIntegration/0.1.0/agent_pb2_grpc.py \
+-- 
+2.25.1
+

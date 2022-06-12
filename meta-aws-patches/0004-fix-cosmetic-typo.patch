@@ -1,0 +1,25 @@
+From f5f9c4636f231a561f0e06cc3e90535cc88b653e Mon Sep 17 00:00:00 2001
+From: Denis Shimizu <denis.shimizu@toradex.com>
+Date: Wed, 8 Jun 2022 13:57:15 -0300
+Subject: [PATCH 4/6] fix cosmetic typo
+
+---
+ .../dlr-demo/06_create_greengrass_deployment.sh                 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/06_create_greengrass_deployment.sh b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/06_create_greengrass_deployment.sh
+index e3b2ffe..b95bcb7 100755
+--- a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/06_create_greengrass_deployment.sh
++++ b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/06_create_greengrass_deployment.sh
+@@ -23,7 +23,7 @@ if [ ! ${RESULTS_BUCKET_NAME} ]; then
+   exit 1
+ fi
+ if [ ! ${CAMERA_COMPONENT_NAME} ]; then
+-  echo "Please set RESULTS_BUCKET_NAME..."
++  echo "Please set CAMERA_COMPONENT_NAME..."
+   exit 1
+ fi
+ if [ ! ${MODEL_COMPONENT_NAME} ]; then
+-- 
+2.25.1
+

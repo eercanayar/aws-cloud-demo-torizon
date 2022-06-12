@@ -1,0 +1,36 @@
+From 84e1bd8119cb9961242dd87ddbb0b04b906cf149 Mon Sep 17 00:00:00 2001
+From: Denis Shimizu <denis.shimizu@toradex.com>
+Date: Wed, 8 Jun 2022 13:57:42 -0300
+Subject: [PATCH 5/6] do not use systemd
+
+---
+ .../dlr-demo/07_setup_device_greengrass.sh            | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+diff --git a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/07_setup_device_greengrass.sh b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/07_setup_device_greengrass.sh
+index 6f50684..bfc2bb0 100755
+--- a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/07_setup_device_greengrass.sh
++++ b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/07_setup_device_greengrass.sh
+@@ -9,14 +9,13 @@ sed -i "s/IOT_CRED_ENDPOINT/${IOT_CRED_ENDPOINT}/g" config.yaml
+ sed -i "s/AWS_REGION/${AWS_REGION}/g" config.yaml
+ 
+ GREENGRASS_ROOT=/greengrass/v2
+-rm ${GREENGRASS_ROOT}/config/*
+-rm ${GREENGRASS_ROOT}/logs/*
++rm -rf ${GREENGRASS_ROOT}/config/*
++rm -rf ${GREENGRASS_ROOT}/logs/*
+ cp config.yaml ${GREENGRASS_ROOT}/config/
+-cp video_source.mkv /
++#cp video_source.mkv /
+ 
+ wget https://www.amazontrust.com/repository/AmazonRootCA1.pem -O ${GREENGRASS_ROOT}/AmazonRootCA1.pem
+ cp greengrass-v2-certs/* ${GREENGRASS_ROOT}
+ 
+-echo "Restarting greengrass service"
+-systemctl restart greengrass
+-
++# echo "Restarting greengrass service"
++# systemctl restart greengrass
+-- 
+2.25.1
+
