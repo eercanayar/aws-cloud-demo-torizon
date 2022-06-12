@@ -30,6 +30,8 @@ RUN git clone -b aws-cloud-demo-video-kvs https://github.com/NXPmicro/meta-aws.g
   rm -rf meta-aws && rm -rf meta-aws-patches
 
 ENTRYPOINT \
+  find . -type f -exec sed -i "s/us-east-2/$AWS_REGION/g" {} + && \
+    /bin/bash
   bash ./setup_cloud_service_and_device.sh && \
   tar -czvf /deploy/greengrass-$PROJECT_NAME.tar.gz /greengrass && \
   cp project_config.sh /deploy/
