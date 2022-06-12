@@ -8,7 +8,7 @@ This project is a porting for Torizon of the original demo [dlr-demo](https://gi
 
 **On your Linux PC**
 
-[Download and install the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) . Don't forget to follow the [Pre-requisites] (https://docs.aws.amazon.com/cli/latest/userguide/getting-started-prereqs.html) and to [configure the CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
+[Download and install the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) . Don't forget to follow the [Pre-requisites](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-prereqs.html) and to [configure the CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
 
 [Install Docker](https://docs.docker.com/get-docker/). Don't forget to login the engine on your dockerhub account using the [docker login](https://docs.docker.com/engine/reference/commandline/login/) command.
 
