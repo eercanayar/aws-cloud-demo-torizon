@@ -13,7 +13,7 @@ This project is a porting for Torizon of the original demo [dlr-demo](https://gi
 [Install Docker](https://docs.docker.com/get-docker/). Don't forget to login the engine on your dockerhub account using the [docker login](https://docs.docker.com/engine/reference/commandline/login/) command.
 
 Install the following pre-requisites:
-``` 
+```
 $ apt install sshpass
 ```
 
@@ -72,13 +72,13 @@ It may take about 15 minutes to conclude.
 
 ## Install the credentials in the device ##
 
-**on your PC**, use `setup_device.sh` script. This will install greengrass on Maivin's filesystem, with its credentials and certificates.
+**on your PC**, use `setup_device.sh` script. This will install AWS IoT Greengrass on Maivin's filesystem, with its credentials and certificates.
 
 ```
 $ ./setup_device.sh
 ```
 
-After this, **on your PC terminal**, use `greengrass.sh` to start execution of greengrass on maivin:
+After this, **on your PC terminal**, use `greengrass.sh` to start execution of AWS IoT Greengrass on maivin:
 
 
 ```
@@ -90,16 +90,16 @@ This will start Nucleos.
 You can execute everything by sending:
 
 ```
-$ ./setup_cloud_service.sh && ./setup_device.sh && ./greengrass.sh 
+$ ./setup_cloud_service.sh && ./setup_device.sh && ./greengrass.sh
 ```
 
-## Observing Greengrass logs ##
+## Observing AWS IoT Greengrass logs ##
 
-With greengrass container running, **On your PC, create a new terminal window**. Connect to your board using `ssh`:
+With AWS IoT Greengrass container running, **On your PC, create a new terminal window**. Connect to your board using `ssh`:
 
 ```
 $ ssh torizon@<board-ip>
-``` 
+```
 
 On the board's terminal, connect to the shell of the running container:
 
