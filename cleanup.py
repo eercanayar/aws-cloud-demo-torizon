@@ -45,10 +45,10 @@ output=cmd('aws iot list-policies')
 for i in output["policies"]:
     execute("aws iot delete-policy --policy-name "+ i["policyName"])
 
-print("Deleting Kinesis video streams")
-output=cmd('aws kinesisvideo list-streams')
-for i in output["StreamInfoList"]:
-    execute("aws kinesisvideo delete-stream --stream-arn "+ i["StreamARN"])
+print("Deleting Kinesis video streams signaling channels")
+output=cmd('aws kinesisvideo list-signaling-channels')
+for i in output["ChannelInfoList"]:
+    execute("aws kinesisvideo delete-signaling-channel --channel-arn "+ i["ChannelARN"])
 
 print("Deleting greengrass role alias")
 output=cmd('aws iot list-role-aliases')

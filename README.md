@@ -123,11 +123,10 @@ main.log
 
 ## Observing the results ##
 
-Use VLC player to view the video output:
+On AWS Management Console, go to Kinesis Video Streams, and use the playback viewe to see the video output:
 
-![](vlc-stream-1.png)
 
-![](vlc-stream-2.png)
+![](kinesis-signaling.jpg)
 
 # Cleaning up everything #
 

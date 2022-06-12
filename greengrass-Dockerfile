@@ -74,4 +74,6 @@ RUN apt-get -y update && apt-get install -y \
 RUN gst-inspect-1.0
 
 ENTRYPOINT \
+  cp /kvs/*.so* /usr/lib && \
+  (/kvs/kvsWebrtcClientMasterGstSample $AWS_IOT_CORE_THING_NAME video-only testsrc &); \
   /greengrass/v2/alts/current/distro/bin/loader

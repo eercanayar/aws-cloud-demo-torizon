@@ -1,0 +1,79 @@
+From 592ba5e954dd5858df55d669db8fcd2c155a65bd Mon Sep 17 00:00:00 2001
+From: Denis Shimizu <denis.shimizu@toradex.com>
+Date: Sun, 12 Jun 2022 00:40:55 -0300
+Subject: [PATCH 7/7] kvs: do not use systemctl on container
+
+---
+ .../dlr-demo/08_kvs_setup.sh                  | 47 +++++++++----------
+ 1 file changed, 23 insertions(+), 24 deletions(-)
+
+diff --git a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/08_kvs_setup.sh b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/08_kvs_setup.sh
+index c7f89e7..d8eb123 100644
+--- a/recipes-devtools/amazon-sagemaker-neo/dlr-demo/08_kvs_setup.sh
++++ b/recipes-devtools/amazon-sagemaker-neo/dlr-demo/08_kvs_setup.sh
+@@ -7,39 +7,38 @@ AWS_IOT_CORE_ROLE_ALIAS=$ROLE_ALIAS_NAME
+ AWS_KVS_LOG_LEVEL=2
+ LD_LIBRARY_PATH=/kvs/
+ DEBUG_LOG_SDP=TRUE
+-AWS_DEFAULT_REGION=us-east-2                                  
+-AWS_KVS_CACERT_PATH=/kvs/certs/cert.pem                            
+-AWS_IOT_CORE_CERT=/greengrass/v2/device.pem.crt               
+-AWS_IOT_CORE_PRIVATE_KEY=/greengrass/v2/private.pem.key    
++AWS_DEFAULT_REGION=us-east-2
++AWS_KVS_CACERT_PATH=/kvs/certs/cert.pem
++AWS_IOT_CORE_CERT=/greengrass/v2/device.pem.crt
++AWS_IOT_CORE_PRIVATE_KEY=/greengrass/v2/private.pem.key
+ EOF
+ 
+ cat > /lib/systemd/system/kvs.service << EOF
+-[Unit]                                                                                                                                                                                        
+-Description=greengrass gst kvs demo                                                                                                                                                           
+-Documentation=                                                                                                                                                                                
+-After=network.target greengrass.service                                                                                                                                                       
+-                                                                                                                                                                                              
+-[Service]                                                                                                                                                                                     
+-EnvironmentFile=-/etc/default/kvs                                                                                                                                                             
+-PIDFile=/run/kvs/kvs.pid                                                                                                                                                                      
++[Unit]
++Description=greengrass gst kvs demo
++Documentation=
++After=network.target greengrass.service
++
++[Service]
++EnvironmentFile=-/etc/default/kvs
++PIDFile=/run/kvs/kvs.pid
+ ExecStart=/kvs/kvsWebrtcClientMasterGstSample \$AWS_IOT_CORE_THING_NAME video-only testsrc
+-Restart=always                                                                                                                                                                                
++Restart=always
+ StandardOutput=file:/var/log/kvs.log
+ StandardError=file:/var/log/kvs.log
+-Type=simple                                                                                                                                                                                   
+-RuntimeDirectory=kvs                                                                                                                                                                          
+-RuntimeDirectoryMode=0755                                                                                                                                                                     
+-                                                                                                                                                                                              
+-[Install]                                                                                                                                                                                     
+-WantedBy=multi-user.target                                                                                                                                                                    
+-Alias=kvs.service   
++Type=simple
++RuntimeDirectory=kvs
++RuntimeDirectoryMode=0755
++
++[Install]
++WantedBy=multi-user.target
++Alias=kvs.service
+ EOF
+ 
+ cp -r kvs /
+-systemctl daemon-reload
+-systemctl enable kvs
+-systemctl restart kvs
++# systemctl daemon-reload
++# systemctl enable kvs
++# systemctl restart kvs
+ 
+ 
+ aws iot update-thing --region $AWS_REGION --thing-name $THING_NAME --attribute-payload '{"attributes":{"lat":"30.238523","lng":"-97.866010"}, "merge":true}'
+-
+-- 
+2.25.1
+

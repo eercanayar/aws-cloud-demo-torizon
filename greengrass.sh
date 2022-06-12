@@ -17,6 +17,8 @@ sshpass -p $BOARD_PWD ssh -t torizon@$BOARD_IP "\
     -v /tmp:/tmp \
     -v /run/udev/:/run/udev/ \
     -v /home/torizon/greengrass/:/greengrass/ \
+    -v /home/torizon/kvs/:/kvs/ \
+    --env-file=/home/torizon/kvs-settings \
     --device-cgroup-rule='c 81:* rmw' \
     --device-cgroup-rule='c 4:* rmw' \
     --device-cgroup-rule='c 13:* rmw' \
