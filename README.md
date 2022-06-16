@@ -80,18 +80,27 @@ $ ./setup_device.sh
 
 After this, **on your PC terminal**, use `greengrass.sh` to start execution of AWS IoT Greengrass on maivin:
 
+### UPDATE
+Before running `greengrass.sh`, 
+
+- Manually delete previous greengrass folder on device: `sudo rm -rf /home/torizon/greengrass`
+- Manually delete previous kvs files and folder on device: `sudo rm -rf /home/torizon/kvs*`
 
 ```
 $ ./greengrass.sh
 ```
 
-This will start Nucleos.
+This will start Greengrass Nucleus.
+
 
 You can execute everything by sending:
 
 ```
 $ ./setup_cloud_service.sh && ./setup_device.sh && ./greengrass.sh
 ```
+
+### UPDATE
+After running `greengrass.sh`, assign `root:root` user and group to the `aws.greengrass.SageMakerEdgeManager` component.
 
 ## Observing AWS IoT Greengrass logs ##
 
