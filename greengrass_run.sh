@@ -5,14 +5,9 @@ source ./project_settings.sh
 
 PROJ_NAME='aws-cloud-demo-torizon'
 
-docker run --rm -it --privileged torizon/binfmt
-docker build -f greengrass-Dockerfile -t $DOCKERHUB_LOGIN/$PROJ_NAME .
-
-docker push $DOCKERHUB_LOGIN/$PROJ_NAME
 
 ssh -t torizon@$BOARD_IP "\
-  docker pull $DOCKERHUB_LOGIN/$PROJ_NAME && \
-  docker run -it --network host \
+ docker run -it --network host \
     -v /dev:/dev \
     -v /tmp:/tmp \
     -v /run/udev/:/run/udev/ \
