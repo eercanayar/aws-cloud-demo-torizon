@@ -2,3 +2,4 @@ test/*
 deploy/*
 project_settings.sh
 test_*
+.DS_Store
