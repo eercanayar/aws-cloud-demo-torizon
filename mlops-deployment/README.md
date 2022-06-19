@@ -1,11 +1,13 @@
 # aws-cloud-demo-torizon MLOps Components Deployment
 
+_Author: Emir Ayar // emirayar@amazon.lu_
+
 This folder contains the resources to deploy MLOps components to an existing demonstrator.
 Please run these deployment only after having a running demo.
 
 This deployment contain following steps:
-- Read `project_settings` and `project_config` files to have deployed resource arn's. 
-- (`001_publish_component_xray.sh`) : Publish X-Ray daemon as a Greengrass component `com.mlops.xray` version `1.1.0` (`001_publish_component_xray.sh`)
+- Read `project_settings.sh` and `project_config.sh` files to have the context of deployed resources. 
+- (`001_publish_component_xray.sh`) : Publish X-Ray daemon as a Greengrass component `com.mlops.xray` version `1.1.0` 
 - (`002_update_component_integration.sh`) : Get the latest `edgeManagerClientCameraIntegration` component recipe and deploy version `0.2.0` with following modifications:
   - Add `com.mlops.xray >= 1.1.0` as a HARD dependency
   - Update version to `0.2.0`
