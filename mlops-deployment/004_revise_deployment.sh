@@ -31,7 +31,7 @@ DEPLOYMENT=$(jq 'del(.creationTimestamp)' <<<${DEPLOYMENT})
 DEPLOYMENT=$(jq 'del(.isLatestForTarget)' <<<${DEPLOYMENT})
 DEPLOYMENT=$(jq 'del(.tags)' <<<${DEPLOYMENT})
 DEPLOYMENT=$(jq 'del(.iotJobConfiguration)' <<<${DEPLOYMENT})
-DEPLOYMENT=$(jq '.components["aws.sagemaker.ew15-emirayar-demo_edgeManagerClientCameraIntegration"]["componentVersion"] = "0.2.0"' <<<${DEPLOYMENT})
+DEPLOYMENT=$(jq '.components["aws.sagemaker.'${PROJECT_NAME}'_edgeManagerClientCameraIntegration"]["componentVersion"] = "0.2.0"' <<<${DEPLOYMENT})
 
 DEPLOYMENT=$(jq '.components["com.mlops.xray"] = {"componentVersion": "1.1.0", "configurationUpdate": {"merge": "{\"region\":\"'${AWS_REGION}'\"}"}}' <<<${DEPLOYMENT})
 
