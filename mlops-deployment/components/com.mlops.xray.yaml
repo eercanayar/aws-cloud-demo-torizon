@@ -20,6 +20,7 @@ Manifests:
       \ -n {configuration:/region}"
   Artifacts:
   - Uri: "s3://BUCKET_NAME/mlops-deployment/com.mlops.xray/1.1.0/com.mlops.xray.zip"
+    Unarchive: "ZIP"
     Permission:
       Read: "OWNER"
       Execute: "NONE"

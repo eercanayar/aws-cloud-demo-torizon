@@ -25,7 +25,9 @@ wget https://s3.us-east-2.amazonaws.com/aws-xray-assets.us-east-2/xray-daemon/aw
 unzip -j aws-xray-daemon-linux-arm64-3.x.zip "xray"
 rm aws-xray-daemon-linux-arm64-3.x.zip
 mv xray components/com.mlops.xray/
-zip -r com.mlops.xray.zip components/com.mlops.xray
+cd components/com.mlops.xray/
+zip -r ../../com.mlops.xray.zip *
+cd ../..
 aws s3 cp com.mlops.xray.zip s3://${COMPONENTS_BUCKET_NAME}/mlops-deployment/com.mlops.xray/1.1.0/
 
 COMPONENT_RECIPE=com.mlops.xray.yaml
